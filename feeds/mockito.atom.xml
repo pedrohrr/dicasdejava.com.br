@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>{ Dicas de Java }</title><link href="http://dicasdejava.com.br/" rel="alternate"></link><link href="http://dicasdejava.com.br/feeds/mockito.atom.xml" rel="self"></link><id>http://dicasdejava.com.br/</id><updated>2017-06-27T00:00:00-03:00</updated><entry><title>Mockito: Como testar chamada de método</title><link href="http://dicasdejava.com.br/mockito-como-testar-chamada-de-metodo/" rel="alternate"></link><published>2017-06-27T00:00:00-03:00</published><updated>2017-06-27T00:00:00-03:00</updated><author><name>Gustavo Furtado de Oliveira Alves</name></author><id>tag:dicasdejava.com.br,2017-06-27:mockito-como-testar-chamada-de-metodo/</id><summary type="html">&lt;p&gt;Muita gente começa a usar o framework Mockito para fazer testes em Java
+e tem dúvidas de como verificar se o método de uma dependência foi ou não chamado.&lt;/p&gt;
+&lt;p&gt;Confira no exemplo abaixo como fazer a verificação de chamada de método de uma dependência com o Mockito.&lt;/p&gt;
+&lt;h2&gt;Exemplo:&lt;/h2&gt;
+&lt;p&gt;Primeiro vamos definir a Classe que está sendo testada
+e uma dependência dela na qual vamos verificar a chamada do método,
+através de um Mock criado com o Mockito. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.mockito.verificarSeMetodoFoiChamado&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ClasseSendoTestada&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="n"&gt;DependenciaDaClasseSendoTestada&lt;/span&gt; &lt;span class="n"&gt;dependencia&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="nf"&gt;ClasseSendoTestada&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DependenciaDaClasseSendoTestada&lt;/span&gt; &lt;span class="n"&gt;dependencia&lt;/span&gt;&lt;span class="o"&gt;){&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;dependencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dependencia&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;metodoSendoTestado&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;parametro&lt;/span&gt;&lt;span class="o"&gt;){&lt;/span&gt;
+        &lt;span class="n"&gt;dependencia&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;metodoQueSeraChamado&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parametro&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Agora a dependência:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.mockito.verificarSeMetodoFoiChamado&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;interface&lt;/span&gt; &lt;span class="nc"&gt;DependenciaDaClasseSendoTestada&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;metodoQueSeraChamado&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;parametro&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Teste&lt;/h2&gt;
+&lt;p&gt;E o teste que faz a verificação da chamada do método com Mockito. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.mockito.verificarSeMetodoFoiChamado&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;org.junit.Test&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;org.mockito.Mockito&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ClasseSendoTestadaTest&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@Test&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;testeMetodoFoiChamado&lt;/span&gt;&lt;span class="o"&gt;(){&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//Cria Mock da dependência&lt;/span&gt;
+        &lt;span class="n"&gt;DependenciaDaClasseSendoTestada&lt;/span&gt; &lt;span class="n"&gt;dependencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Mockito&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;mock&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DependenciaDaClasseSendoTestada&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//Instancia a classe sendo testada passando a dependência Mockada&lt;/span&gt;
+        &lt;span class="n"&gt;ClasseSendoTestada&lt;/span&gt; &lt;span class="n"&gt;classeSendoTestada&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;ClasseSendoTestada&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dependencia&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//chama o método sendo testado&lt;/span&gt;
+        &lt;span class="n"&gt;classeSendoTestada&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;metodoSendoTestado&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;parâmetro-teste&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//Verifica se o método da dependência foi chamado (incluindo o parâmetro exato)&lt;/span&gt;
+        &lt;span class="n"&gt;Mockito&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;verify&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dependencia&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Mockito&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;times&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)).&lt;/span&gt;&lt;span class="na"&gt;metodoQueSeraChamado&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;parâmetro-teste&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Este teste verifica se o método da dependência da classe foi chamado
+e ainda verifica a quantidade de vezes que ele foi testado.&lt;/p&gt;
+&lt;p&gt;Se, por exemplo, quisermos verificar se o método foi acessado 5 vezes
+bataria informar 5 no segundo parâmetro do método estático &lt;em&gt;verify&lt;/em&gt; da classe &lt;em&gt;Mockito&lt;/em&gt;.&lt;/p&gt;</summary><category term="Mockito"></category></entry></feed>

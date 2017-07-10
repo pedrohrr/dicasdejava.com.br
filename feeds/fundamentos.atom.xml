@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>{ Dicas de Java }</title><link href="http://dicasdejava.com.br/" rel="alternate"></link><link href="http://dicasdejava.com.br/feeds/fundamentos.atom.xml" rel="self"></link><id>http://dicasdejava.com.br/</id><updated>2017-07-10T00:00:00-03:00</updated><entry><title>Java: Implementando métodos na interface com Default Methods!</title><link href="http://dicasdejava.com.br/java-implementando-metodos-na-interface-com-default-methods/" rel="alternate"></link><published>2017-07-10T00:00:00-03:00</published><updated>2017-07-10T00:00:00-03:00</updated><author><name>Gustavo Furtado de Oliveira Alves</name></author><id>tag:dicasdejava.com.br,2017-07-10:java-implementando-metodos-na-interface-com-default-methods/</id><summary type="html">&lt;p&gt;Aprendi desde o início da minha carreira que uma &lt;em&gt;interface&lt;/em&gt; em Orientação a Objetos
+apenas define os métodos que devem ser implementados pelas classes.
+Ou seja, não poderíamos implementar um método em uma classe.&lt;/p&gt;
+&lt;p&gt;Mas isso mudou e a partir do &lt;strong&gt;Java 8&lt;/strong&gt; nós podemos ter implementação "padrão" de um método
+na interface Java! Para isso, basta utilizarmos a palavra-chave &lt;code&gt;default&lt;/code&gt; na declaração do método.&lt;/p&gt;
+&lt;p&gt;Vejamos um exemplo da implementação padrão de um método em uma interface.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.fundamentos&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;interface&lt;/span&gt; &lt;span class="nc"&gt;InterfaceComDefaultMethod&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="nf"&gt;metodo&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="nf"&gt;metodo2&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Classe&lt;/span&gt; &lt;span class="kd"&gt;implements&lt;/span&gt; &lt;span class="n"&gt;InterfaceComDefaultMethod&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="nf"&gt;metodo2&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Main&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;InterfaceComDefaultMethod&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Classe&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;metodo&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;metodo2&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Saída:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;a
+b
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;O arquivo Java acima exemplifica a utilização de um &lt;em&gt;"default method"&lt;/em&gt; em Java.&lt;/p&gt;
+&lt;p&gt;Podemos observar que o método que foi implementado na interface, 
+necessariamente utilizando a palavra-chave &lt;code&gt;default&lt;/code&gt;,
+não precisa ser implementado na &lt;code&gt;Classe&lt;/code&gt; que "implementa" a interface &lt;code&gt;InterfaceComDefaultMethod&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;TEM que ter a palavra chave &lt;strong&gt;default&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Para utilizarmos esse recurso do &lt;strong&gt;Java 8&lt;/strong&gt; e implementar um método na própria interface,
+precisamos utilizar a palavra-chave &lt;code&gt;default&lt;/code&gt; na declaração do método que terá a implementação padrão.
+Conforme o exemplo abaixo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="nf"&gt;metodo&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Referências:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html"&gt;Doc: Default Methods&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="Interface"></category><category term="Default Method"></category><category term="Java Básico"></category></entry><entry><title>Java: Varargs...</title><link href="http://dicasdejava.com.br/java-varargs/" rel="alternate"></link><published>2017-07-05T00:00:00-03:00</published><updated>2017-07-05T00:00:00-03:00</updated><author><name>Gustavo Furtado de Oliveira Alves</name></author><id>tag:dicasdejava.com.br,2017-07-05:java-varargs/</id><summary type="html">&lt;p&gt;Somente o último parâmetro de um método em Java pode ser do tipo &lt;strong&gt;varargs&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Um parâmetro vararg pode receber &lt;strong&gt;0&lt;/strong&gt;, &lt;strong&gt;muitos&lt;/strong&gt; ou um &lt;strong&gt;array&lt;/strong&gt; de parâmetros.
+Aliás, é por essa característica que o parâmetro vararg
+&lt;strong&gt;deve ser o último parâmetro do método&lt;/strong&gt;. &lt;/p&gt;
+&lt;p&gt;Para declarar um vararg nós colocamos três pontinhos no tipo do parâmetro.
+Por exemplo: &lt;code&gt;void metodo1(int a, String... b)&lt;/code&gt;. 
+Neste exemplo o parâmetro &lt;code&gt;b&lt;/code&gt; é o parâmetro &lt;strong&gt;vararg&lt;/strong&gt; do método.&lt;/p&gt;
+&lt;p&gt;Vejamos no exemplo abaixo todas as formas de utilizar o parâmetro do tipo &lt;em&gt;vararg&lt;/em&gt;. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.fundamentos&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Varargs&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//Sem o 3º parâmetro (Vararg...)&lt;/span&gt;
+        &lt;span class="n"&gt;metodoComVarargs&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a1&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//Com o 3º parâmetro do tipo int&lt;/span&gt;
+        &lt;span class="n"&gt;metodoComVarargs&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a2&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//Com o 3º parâmetro do tipo int[] (array de int)&lt;/span&gt;
+        &lt;span class="n"&gt;metodoComVarargs&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a3&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;[]{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;});&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//Com vários parâmetros int a partir do 3º parâmetro (Vararg...)&lt;/span&gt;
+        &lt;span class="n"&gt;metodoComVarargs&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a4&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;metodoComVarargs&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;length&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Saída:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;a1
+true
+0
+
+a2
+false
+1
+1
+
+a3
+true
+3
+1
+2
+3
+
+a4
+true
+5
+1
+2
+3
+4
+5
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Deve ser do mesmo tipo!&lt;/h2&gt;
+&lt;p&gt;É importante notar que o Vararg recebe &lt;strong&gt;valores do mesmo tipo&lt;/strong&gt;.
+Não podemos por exemplo, chamar o método do exemplo acima
+passando os seguintes parâmetros.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//NÃO PODE CHAMAR O MÉTODO ASSIM!&lt;/span&gt;
+&lt;span class="n"&gt;metodoComVarargs&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a3&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;texto&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;c&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Deve ser o último parâmetro!&lt;/h2&gt;
+&lt;p&gt;Como já vimos no inicio do post, 
+o parâmetro &lt;em&gt;vararg&lt;/em&gt; deve ser o último parâmetro do método.
+Não podemos declarar um método como no exemplo a baixo&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//NÃO PODE DECLARAR O MÉTODO ASSIM!&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;metodoComVarargs&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Referências:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://docs.oracle.com/javase/1.5.0/docs/guide/language/varargs.html"&gt;JavaDoc: Varargs&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="Varargs"></category><category term="Java Básico"></category></entry><entry><title>Java: Diferença entre i++, ++i e i = i + 1</title><link href="http://dicasdejava.com.br/java-diferenca-entre-i-i-e-i-i-1/" rel="alternate"></link><published>2017-07-03T00:00:00-03:00</published><updated>2017-07-03T00:00:00-03:00</updated><author><name>Gustavo Furtado de Oliveira Alves</name></author><id>tag:dicasdejava.com.br,2017-07-03:java-diferenca-entre-i-i-e-i-i-1/</id><summary type="html">&lt;p&gt;É comum programadores iniciantes se depararem com um &lt;code&gt;i++&lt;/code&gt; ou &lt;code&gt;++i&lt;/code&gt;
+no código &lt;strong&gt;java&lt;/strong&gt; e não saberem para quê serve,
+outros ficam na dúvida de qual a diferença entre &lt;code&gt;i++&lt;/code&gt;, &lt;code&gt;++i&lt;/code&gt; e &lt;code&gt;i = i + 1&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;No exemplo acima, &lt;code&gt;i&lt;/code&gt; é apenas uma variável do tipo &lt;code&gt;int&lt;/code&gt;,
+podendo ter qualquer outro nome de variável.&lt;/p&gt;
+&lt;p&gt;No final das contas, essas três formas de incremento
+vão incrementar um &lt;strong&gt;único&lt;/strong&gt; valor na variável &lt;code&gt;i&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Se forem utilizados em um comando simples, ou seja,
+um comando que só tem o incremento e mais nada,
+as três formas não tem nenhuma diferença.&lt;/p&gt;
+&lt;p&gt;Confira no exemplo abaixo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.fundamentos&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;IncrementoComMaisMaisOuComMais1ComandoSimples&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+        &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++;&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Saída:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;0
+1
+2
+3
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Entretanto se estas formas de incremento forem utilizadas em um comando composto,
+ou seja, que contenha mais de uma instrução, os resultados podem ser diferentes.&lt;/p&gt;
+&lt;p&gt;A instrução &lt;code&gt;++i&lt;/code&gt;, incrementa a variável &lt;code&gt;i&lt;/code&gt; &lt;strong&gt;antes&lt;/strong&gt; dela ser utilizada no comando.
+Já a instrução &lt;code&gt;i++&lt;/code&gt;, incrementa a variável &lt;code&gt;i&lt;/code&gt; &lt;strong&gt;depois&lt;/strong&gt; dela ser utilizada no comando.
+E se você incrementar uma variável e atribuir o resultado a ela mesma,
+em um comando, o resultado da instrução é o valor da variável após o incremento.&lt;/p&gt;
+&lt;p&gt;No exemplo abaixo vemos o resultado dos três tipos de incremento
+como parâmetro do método &lt;code&gt;println&lt;/code&gt;, ou seja, antes de terminar o "comando".&lt;/p&gt;
+&lt;p&gt;Lembrando que um comando &lt;em&gt;java&lt;/em&gt; só termina no &lt;code&gt;;&lt;/code&gt; (ponto e vírgula)!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.fundamentos&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;IncrementoComMaisMaisOuComMais1ComandoComposto&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+        &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;      i++ =&amp;gt; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++));&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;        i =&amp;gt; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;      ++i =&amp;gt; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="o"&gt;(++&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;));&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;        i =&amp;gt; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;i = i + 1 =&amp;gt; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;));&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;        i =&amp;gt; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Saída:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;      i++ =&amp;gt; 0
+        i =&amp;gt; 1
+      ++i =&amp;gt; 2
+        i =&amp;gt; 2
+i = i + 1 =&amp;gt; 3
+        i =&amp;gt; 3
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;No primeiro &lt;code&gt;print&lt;/code&gt;, quando utilizamos &lt;code&gt;i++&lt;/code&gt;,
+percebemos que foi utilizado o valor atual da variável &lt;code&gt;i&lt;/code&gt; (0)
+e em seguida a variável foi incrementada para (1), pois no print seguinte,
+imprimimos apenas a variável, sem incremento.&lt;/p&gt;
+&lt;p&gt;Ao utilizar &lt;code&gt;++1&lt;/code&gt;, percebemos que a variável &lt;code&gt;i&lt;/code&gt;
+foi incrementada antes de ser utilizada. Ou seja, era 1 e passou a ser 2.
+Esse comportamento pode ser comprovado na linha seguinte,
+quando imprimimos &lt;code&gt;i&lt;/code&gt; novamente e obtemos o mesmo valor 2.&lt;/p&gt;
+&lt;p&gt;Por fim, se utilizarmos &lt;code&gt;i = i + 1&lt;/code&gt; percebemos que a variável &lt;code&gt;i&lt;/code&gt;
+também foi incrementada antes de ser utilizada.
+O que significa que a instrução &lt;code&gt;i = i + 1&lt;/code&gt;,
+resulta no valor da variável &lt;code&gt;i&lt;/code&gt; após o incremento.&lt;/p&gt;
+&lt;p&gt;Espero que esta explicação te ajude, mas se ainda permenecer com dúvidas
+poste aí nos comentários!&lt;/p&gt;</summary><category term="Operadores aritméticos"></category></entry><entry><title>Java: Parâmetros de linha de comando</title><link href="http://dicasdejava.com.br/java-parametros-de-linha-de-comando/" rel="alternate"></link><published>2017-06-30T00:00:00-03:00</published><updated>2017-06-30T00:00:00-03:00</updated><author><name>Gustavo Furtado de Oliveira Alves</name></author><id>tag:dicasdejava.com.br,2017-06-30:java-parametros-de-linha-de-comando/</id><summary type="html">&lt;p&gt;Muita gente se acostuma a criar o método estático &lt;code&gt;main&lt;/code&gt; no java 
+e não sabe para quê serve o parâmetro do tipo &lt;code&gt;String[]&lt;/code&gt; (Array de String),
+geralmente nomeado como &lt;code&gt;args&lt;/code&gt;. Vamos ver neste post porque este parâmetro existe
+no método que inicia qualquer programa Java.&lt;/p&gt;
+&lt;p&gt;Antes de falar sobre java, é importante perceber que 
+todo programa pode receber argumentos de linha de comando ao ser executado.
+Peguemos por exemplo o programa "Bloco de Notas" do Windows, cujo comando de linha de comando é "notepad",
+se você abrir o prompt de comando do Windows (ou o "Executar") e executar o comando 
+&lt;code&gt;notepad &amp;lt;Caminho de um arquivo .txt por exemplo&amp;gt;&lt;/code&gt;,
+o software &lt;em&gt;Bloco de Notas&lt;/em&gt; vai abrir o seu arquivo que foi informado como argumento na linha comando.&lt;/p&gt;
+&lt;p&gt;O que foi informado na frente do comando para a execução do software
+é chamado de &lt;strong&gt;Argumento de linha de comando&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;No java, aquele array de String do método &lt;code&gt;main&lt;/code&gt; serve para receber os &lt;em&gt;argumentos de linha de comando&lt;/em&gt;
+que são passados na hora de executar o programa.
+Cada argumento é separado por um "espaço" no momento da execução.&lt;/p&gt;
+&lt;p&gt;Vamos ver isso na prática com o código abaixo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.fundamentos&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ParametroDeLinhaDeComando&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;length&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;arg&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Ao ser executado, o código acima imprime no prompt de comandos a quantidade de argumentos recebidos,
+e em seguida imprime cada argumento separadamente, ao imprimir cada item do array &lt;code&gt;args&lt;/code&gt; em uma linha.&lt;/p&gt;
+&lt;p&gt;Abaixo eu apresento a compilação e a execução deste programinha Java
+com diferentes argumentos de linha de comando (no Windows).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Execução de um programa Java com argumentos de linha de comando" src="/images/parametros-de-linha-de-comando.png" width="100%" /&gt;&lt;/p&gt;
+&lt;p&gt;De &lt;strong&gt;bônus&lt;/strong&gt;, no exemplo acima eu mostro como compilar e executar uma classe
+que se encontra em um pacote.&lt;/p&gt;
+&lt;p&gt;Para compilar: &lt;code&gt;javac caminho\das\pastas\para\a\Classe.java&lt;/code&gt; (\ para Windows e / para Linux e MacOS)&lt;/p&gt;
+&lt;p&gt;Para executar: &lt;code&gt;java caminho.das.pastas.para.a.Classe &amp;lt;argumentos de linha de comando separados por 'espaço'&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Qualquer dúvida, escreva abaixo nos comentários.&lt;/p&gt;</summary><category term="Java Básico"></category><category term="main"></category></entry><entry><title>Tudo que você precisa saber sobre comentários em Java</title><link href="http://dicasdejava.com.br/tudo-que-voce-precisa-saber-sobre-comentarios-em-java/" rel="alternate"></link><published>2017-06-29T00:00:00-03:00</published><updated>2017-06-29T00:00:00-03:00</updated><author><name>Gustavo Furtado de Oliveira Alves</name></author><id>tag:dicasdejava.com.br,2017-06-29:tudo-que-voce-precisa-saber-sobre-comentarios-em-java/</id><summary type="html">&lt;p&gt;Toda linguagem de programação provê formas de criar comentários no código,
+ou seja, códigos que são ignorados pelo compilador.&lt;/p&gt;
+&lt;p&gt;Vejamos as formas de criar comentários em Java.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.fundamentos&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ComentariosEmJava&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+        &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;texto&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Este é um código sem comentário.&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;texto&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//Este é um comentário de linha.&lt;/span&gt;
+        &lt;span class="c1"&gt;//Este comentário pode aparecer em qualquer parte do arquivo .java&lt;/span&gt;
+        &lt;span class="c1"&gt;//Tudo que estiver depois dos caracteres // é um comentário&lt;/span&gt;
+        &lt;span class="n"&gt;texto&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Outro comando&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="c1"&gt;//Mesmo que seja uma linha que já tenha um comando.&lt;/span&gt;
+        &lt;span class="c1"&gt;//Porém após abrir o comentário com // ele não pode ser fechado na linha.&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;texto&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="cm"&gt;/*Comentário interno da linha*/&lt;/span&gt;
+        &lt;span class="cm"&gt;/*Este tipo de comentário deve ser fechado com */&lt;/span&gt;
+        &lt;span class="cm"&gt;/*Ele pode inclusive ocupar&lt;/span&gt;
+&lt;span class="cm"&gt;        mais de uma linha, mas deve ser fechado! */&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//Após fechar o comenário interno de linha pode ter um comando java&lt;/span&gt;
+        &lt;span class="cm"&gt;/*Comentário de exemplo*/&lt;/span&gt;&lt;span class="n"&gt;texto&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;mais um comando&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;texto&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;texto&lt;/span&gt; &lt;span class="cm"&gt;/*este comentário pode estar no meio da linha*/&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Outro comando&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;texto&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;texto&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Dentro de uma String não pode ter comentário &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;/*isso continua sendo um texto, não é comentário*/.&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;texto&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//Comentários dentro de linha só não pode estar no meio de uma palavra do comando&lt;/span&gt;
+        &lt;span class="c1"&gt;//Como este exemplo:&lt;/span&gt;
+        &lt;span class="c1"&gt;//Str/*comentario*/ing texto2 = &amp;quot;teste&amp;quot;;&lt;/span&gt;
+        &lt;span class="c1"&gt;//Ou neste outro exemplo:&lt;/span&gt;
+        &lt;span class="c1"&gt;//String tex/*comentario*/to = &amp;quot;teste;&lt;/span&gt;
+
+        &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;         * Bloco de comentário:&lt;/span&gt;
+&lt;span class="cm"&gt;         * Este bloco de comentário não é diferente do comentário interno de linha&lt;/span&gt;
+&lt;span class="cm"&gt;         * Mas é muito utilizado para organização do código com esses * no inicio.&lt;/span&gt;
+&lt;span class="cm"&gt;         * Geralmente vemos este tipo de comentário&lt;/span&gt;
+&lt;span class="cm"&gt;         * para descrever o funcionamento de um método ou uma classe.&lt;/span&gt;
+&lt;span class="cm"&gt;         * Como na descrição do método abaixo&lt;/span&gt;
+&lt;span class="cm"&gt;         */&lt;/span&gt;
+
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;     * Este método não faz nada!&lt;/span&gt;
+&lt;span class="cm"&gt;     * Este comentário descreve o método abaixo&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;metodo&lt;/span&gt;&lt;span class="o"&gt;(){&lt;/span&gt;
+
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Saída:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Este é um código sem comentário.
+Outro comando
+mais um comando
+Outro comando
+Dentro de uma String não pode ter comentário /*isso continua sendo um texto, não é comentário*/.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Javadoc&lt;/h2&gt;
+&lt;p&gt;Além dos comentários simples do Java, há um tipo de comentário especial,
+utilizado para documentar classes, interfaces, enums e métodos.&lt;/p&gt;
+&lt;p&gt;Esse tipo de comentário é chamado de &lt;strong&gt;Javadoc&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;O Javadoc é um comentário que começa com /*&lt;em&gt; e é fechado com &lt;/em&gt;/.
+No Javadoc podemos podemos descrever parâmetros e retornos de métodos,
+exceções retornadas, etc.&lt;/p&gt;
+&lt;p&gt;Confira no código-exemplo abaixo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.fundamentos&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * Esta classe é um exemplo de classe que tem comentários do tipo Javadoc&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ClasseComJavadoc&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * Este é um comentário de Javadoc&lt;/span&gt;
+&lt;span class="cm"&gt;     * @param parametro - este é um parâmetro do método&lt;/span&gt;
+&lt;span class="cm"&gt;     * @return Este metodo retorna falso (sempre)&lt;/span&gt;
+&lt;span class="cm"&gt;     * @throws Exception - Esta exeption nunca é lançada neste método,&lt;/span&gt;
+&lt;span class="cm"&gt;     * mas tá aqui pra exemplificar o comentário Javadoc para Exceptions&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;outroMetodo&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;parametro&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="kd"&gt;throws&lt;/span&gt; &lt;span class="n"&gt;Exception&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="c1"&gt;//Comentários de Javadoc iniciam com /**&lt;/span&gt;
+        &lt;span class="c1"&gt;//O comentário deste método é um comentário de Javadoc&lt;/span&gt;
+        &lt;span class="c1"&gt;//Mas estes comentários aqui de dentro do método não são do tipo Javadoc&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Referências:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="http://www.oracle.com/technetwork/articles/java/index-137868.html"&gt;How to Write Doc Comments for the Javadoc Tool&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="Java Básico"></category></entry><entry><title>Java: Como transformar uma String separada por virgula em Array</title><link href="http://dicasdejava.com.br/java-como-transformar-uma-string-separada-por-virgula-em-array/" rel="alternate"></link><published>2017-06-28T00:00:00-03:00</published><updated>2017-06-28T00:00:00-03:00</updated><author><name>Gustavo Furtado de Oliveira Alves</name></author><id>tag:dicasdejava.com.br,2017-06-28:java-como-transformar-uma-string-separada-por-virgula-em-array/</id><summary type="html">&lt;p&gt;Confira no exemplo abaixo como transformar uma String
+com valores separadores por vírgula em um Array.&lt;/p&gt;
+&lt;h2&gt;Exemplo:&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.fundamentos&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;StringSeparadaPorVirgulaEmArray&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+        &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;stringDeNomes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;João, Carlos, José, Marcos, Maria, Julia, Joaquim, Ana&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+        &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;arrayDeNomes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;stringDeNomes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;split&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Tamanho do array: &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;arrayDeNomes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;length&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;arrayDeNomes&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Saída:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Tamanho do array: 8
+João
+Carlos
+José
+Marcos
+Maria
+Julia
+Joaquim
+Ana
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Referências:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html"&gt;JavaDoc: String&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="Regex"></category><category term="String"></category><category term="Array"></category></entry><entry><title>Java: Diferença entre os operadores &amp;&amp;, &amp;, || e |</title><link href="http://dicasdejava.com.br/java-diferenca-entre-os-operadores-e/" rel="alternate"></link><published>2017-06-25T00:00:00-03:00</published><updated>2017-06-25T00:00:00-03:00</updated><author><name>Gustavo Furtado de Oliveira Alves</name></author><id>tag:dicasdejava.com.br,2017-06-25:java-diferenca-entre-os-operadores-e/</id><summary type="html">&lt;p&gt;Uma dúvida muito comum entre programadores Java iniciantes
+é saber a diferença entre os operadores lógicos duplo ou simples, ou seja, 
+a diferença entre &lt;strong&gt;&amp;amp;&amp;amp;&lt;/strong&gt; e &lt;strong&gt;&amp;amp;&lt;/strong&gt; para o operador &lt;strong&gt;E&lt;/strong&gt;
+e a diferença entre &lt;strong&gt;||&lt;/strong&gt; e &lt;strong&gt;|&lt;/strong&gt; para o operador &lt;strong&gt;OU&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;A diferença é que a quando usamos a versão dupla do operador (&amp;amp;&amp;amp; e ||), 
+se a condição da operação for resolvida, ela não continua as avaliações das condições seguintes.&lt;/p&gt;
+&lt;p&gt;Imagine que você está executando uma operação &lt;strong&gt;E&lt;/strong&gt;.
+Se a verificação da esquerda resultar &lt;strong&gt;falso&lt;/strong&gt;, não é necessário verificar o teste do lado direito da operação, concorda?
+Independente do resultado da segunda parte da operação, o resultado final será &lt;strong&gt;falso&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;O mesmo se aplica para a operação &lt;strong&gt;OU&lt;/strong&gt;.
+Se a verificação da esquerda resultar &lt;strong&gt;verdadeiro&lt;/strong&gt;, não é necessário verificar o teste do lado direito da operação.
+Independente do resultado da segunda parte da operação, o resultado final será &lt;strong&gt;verdadeiro&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Quando usamos os operadores duplos (&amp;amp;&amp;amp; e ||) o java não continua as verificações se o resultado já for conhecido.
+Já usando os operadores simples (&amp;amp; e |), ambos os lados da operação são &lt;strong&gt;sempre&lt;/strong&gt; verificados.&lt;/p&gt;
+&lt;p&gt;Vamos ver um exemplo...&lt;/p&gt;
+&lt;h2&gt;Exemplo:&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.fundamentos&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;OperadoresLogicosDuploOuSimples&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;false &amp;amp;&amp;amp; true = &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+                &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;primeiraCondicao&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;segundaCondicao&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;))&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+                &lt;span class="s"&gt;&amp;quot; - sem teste da segunda condição.&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;false &amp;amp; true = &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+                &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;primeiraCondicao&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;segundaCondicao&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;))&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+                &lt;span class="s"&gt;&amp;quot; - com teste da segunda condição.&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;true || false = &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+            &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;primeiraCondicao&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;segundaCondicao&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="o"&gt;))&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot; - sem teste da segunda condição.&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;true | false = &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+                &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;primeiraCondicao&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;segundaCondicao&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="o"&gt;))&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+                &lt;span class="s"&gt;&amp;quot; - com teste da segunda condição.&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;primeiraCondicao&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;retorno&lt;/span&gt;&lt;span class="o"&gt;){&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Executou o teste da primeira condição&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;retorno&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;segundaCondicao&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;retorno&lt;/span&gt;&lt;span class="o"&gt;){&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Executou o teste da segunda condição&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;retorno&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Saída:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Executou o teste da primeira condição
+false &amp;amp;&amp;amp; true = false - sem teste da segunda condição.
+
+Executou o teste da primeira condição
+Executou o teste da segunda condição
+false &amp;amp; true = false - com teste da segunda condição.
+
+Executou o teste da primeira condição
+true || false = true - sem teste da segunda condição.
+
+Executou o teste da primeira condição
+Executou o teste da segunda condição
+true | false = true - com teste da segunda condição.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Referências:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.2"&gt;Boolean Logical Operators &amp;amp;, ^, and |&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://dicasdeprogramacao.com.br/operadores-logicos/"&gt;Conheça os operadores lógicos!&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="Operadores lógicos"></category></entry><entry><title>Java: Operadores Bitwise</title><link href="http://dicasdejava.com.br/java-operadores-bitwise/" rel="alternate"></link><published>2017-06-24T00:00:00-03:00</published><updated>2017-06-24T00:00:00-03:00</updated><author><name>Gustavo Furtado de Oliveira Alves</name></author><id>tag:dicasdejava.com.br,2017-06-24:java-operadores-bitwise/</id><summary type="html">&lt;p&gt;É possível realizar &lt;a href="http://www.dicasdeprogramacao.com.br/operadores-logicos/"&gt;operações lógicas&lt;/a&gt; entre números inteiros em Java.
+Mas como assim? Operações lógicas não são somente entre valores lógicos (booleanos)?&lt;/p&gt;
+&lt;p&gt;Sim e Não...&lt;/p&gt;
+&lt;p&gt;Sim, operações lógicas (E, Ou, Não, Não-E, Não-Ou, Ou-Exclusivo, etc.)
+são realizadas apenas entre valores lógicos.&lt;/p&gt;
+&lt;p&gt;Entretanto em Java é possível realizar algumas operações lógicas entre valores numéricos inteiros.
+Neste caso, as operações lógicas ocorrem no nível de &lt;em&gt;bits&lt;/em&gt; dos números,
+ou seja, as operações lógicas ocorrem com as representações binárias dos números.&lt;/p&gt;
+&lt;p&gt;Para realizar uma operação lógica com números inteiros (a nível de bits) com java,
+basta utilizarmos os operadores &lt;strong&gt;&amp;amp;&lt;/strong&gt;, &lt;strong&gt;|&lt;/strong&gt; e &lt;strong&gt;^&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Exemplo:&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="nn"&gt;br.com.dicasdejava.fundamentos&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;OperacoesBitwise&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+        &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; | &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; = &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;));&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; &amp;amp; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; = &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;));&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; ^ &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; = &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;));&lt;/span&gt;
+
+        &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; | &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; = &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;));&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; &amp;amp; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; = &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;));&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; ^ &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; = &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;  &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;));&lt;/span&gt;
+
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Saída:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;10 | 12 = 14
+10 &amp;amp; 12 = 8
+10 ^ 12 = 6
+9 | 7 = 15
+9 &amp;amp; 7 = 1
+9 ^ 7 = 14
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;10 OU 12&lt;/h2&gt;
+&lt;p&gt;No exemplo acima, nós efetuamos primeiro uma operação lógica &lt;strong&gt;OU&lt;/strong&gt; entre os números 10 e 12.
+Mas como esta operação acontece no nível binário, primeiro termos que 
+&lt;a href="http://www.dicasdeprogramacao.com.br/as-10-conversoes-numericas-mais-utilizadas-na-computacao/"&gt;converter os números para binário&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;10&lt;sub&gt;10&lt;/sub&gt; = 1010&lt;sub&gt;2&lt;/sub&gt;&lt;br /&gt;
+  12&lt;sub&gt;10&lt;/sub&gt; = 1100&lt;sub&gt;2&lt;/sub&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Com os números binários em mãos podemos realizar as operações lógicas. Então 10 | 12 ...&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;10 | 12 = 14
+
+1010
+1100
+----
+1110
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;1110&lt;sub&gt;2&lt;/sub&gt; = 14&lt;sub&gt;10&lt;/sub&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Esta operação é como se fosse uma soma (que você aprende no primário),
+mas aplicando o operador &lt;strong&gt;OU&lt;/strong&gt; ao invês do mais (+).&lt;/p&gt;
+&lt;p&gt;Da direita para a esquerda...&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;0 OU 0 = 0
+1 OU 0 = 1
+0 OU 1 = 1
+1 OU 1 = 1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;10 E 12&lt;/h2&gt;
+&lt;p&gt;Aplicando o operador &lt;strong&gt;E&lt;/strong&gt; aos valores 10 e 12 a nível de bits (binário), temos o seguinte resultado.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;10 &amp;amp; 12 = 8
+
+1010
+1100
+----
+1000
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;1000&lt;sub&gt;2&lt;/sub&gt; = 8&lt;sub&gt;10&lt;/sub&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A ideia aqui é a mesma, esta operação é como se fosse uma soma (que você aprende no primário),
+mas aplicando o operador &lt;strong&gt;E&lt;/strong&gt; ao invês do mais (+).&lt;/p&gt;
+&lt;p&gt;Da direita para a esquerda...&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;0 E 0 = 0
+1 E 0 = 0
+0 E 1 = 0
+1 E 1 = 1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;10 OU-EXCLUSIVO 12&lt;/h2&gt;
+&lt;p&gt;Aplicando o operador &lt;strong&gt;OU-EXCLUSIVO&lt;/strong&gt; aos valores 10 e 12 a nível de bits (binário), temos o seguinte resultado.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;10 ^ 12 = 8
+
+1010
+1100
+----
+0110
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;0110&lt;sub&gt;2&lt;/sub&gt; = 6&lt;sub&gt;10&lt;/sub&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Seguindo o mesmo raciocínio de aplicar o operador lógico no nível binário ...
+(Da direita para a esquerda)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;0 OU-EXCLUSIVO 0 = 0
+1 OU-EXCLUSIVO 0 = 1
+0 OU-EXCLUSIVO 1 = 1
+1 OU-EXCLUSIVO 1 = 0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Operações Bitwise entre 9 e 7&lt;/h2&gt;
+&lt;p&gt;Como um segundo exemplo da aplicação dos operadores bitwise podemos usar os valores 9 e 7.
+Vejamos como o Java executa as operações &lt;strong&gt;OU&lt;/strong&gt;, &lt;strong&gt;E&lt;/strong&gt; e &lt;strong&gt;OU-EXCLUSIVO&lt;/strong&gt; entre esses valores:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;9 | 7 = 15 (OU)
+
+1001 - 9 em binário
+0111 - 7 em binário 
+----
+1111 - 15 em binário
+
+9 &amp;amp; 7 = 1 (E)
+
+1001 - 9 em binário
+0111 - 7 em binário 
+----
+0001 - 1 em binário
+
+9 ^ 7 = 14 (OU-EXCLUSIVO)
+
+1001 - 9 em binário
+0111 - 7 em binário 
+----
+1110 - 14 em binário
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Referências:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op3.html"&gt;Bitwise and Bit Shift Operators&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://dicasdeprogramacao.com.br/as-10-conversoes-numericas-mais-utilizadas-na-computacao/"&gt;As 10 conversões numéricas mais utilizadas na computação&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://dicasdeprogramacao.com.br/operadores-logicos/"&gt;Conheça os operadores lógicos!&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="Operadores Bitwise"></category><category term="Bitwise"></category><category term="Operadores Lógicos"></category></entry></feed>
